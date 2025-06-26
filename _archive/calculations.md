@@ -1,0 +1,12 @@
+| Konzept/Gesetz                | Formel                                                                                                   | Beschreibung                                              |
+|-------------------------------|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
+| Newtons Gravitationsgesetz    | \( F = G \frac{m_1 m_2}{r^2} \)                                                                          | Anziehungskraft zwischen zwei Massen                      |
+| Newtonsche Bewegungsgleichung | \( \vec{F} = m \vec{a} \)                                                                               | Grundgleichung der Mechanik                               |
+| Keplersches 3. Gesetz         | \( \frac{a^3}{T^2} = \text{konstant} \)                                                                 | Verhältnis Bahnhalbachse/Umlaufzeit                       |
+| Vis-Viva-Gleichung            | \( v^2 = GM \left( \frac{2}{r} - \frac{1}{a} \right) \)                                                  | Geschwindigkeit auf Keplerbahn                            |
+| Hill-Sphäre                   | \( r_H = a \left( \frac{m}{3M} \right)^{1/3} \)                                                         | Bereich der gravitativen Bindung eines Körpers            |
+| Schwarzschild-Radius          | \( r_s = \frac{2GM}{c^2} \)                                                                             | Radius eines Schwarzen Lochs                              |
+| Raketenformel (Ziolkowski)    | \( \Delta v = v_e \ln \left( \frac{m_0}{m_f} \right) \)                                                  | Geschwindigkeitsänderung durch Antrieb                    |
+| Mehrkörperproblem             | \( m_i \frac{d^2 \vec{r}_i}{dt^2} = \sum_{j \neq i} G \frac{m_i m_j}{|\vec{r}_j - \vec{r}_i|^3} (\vec{r}_j - \vec{r}_i) \) | Bewegung unter mehreren Gravitationsquellen               |
+| Relativistische Korrektur     | \( \Delta \omega = \frac{6\pi GM}{a(1-e^2)c^2} \)                                                        | Periheldrehung (z.B. Merkurbahn)                          |
+| Euler-Verfahren (numerisch)   | \( y_{n+1} = y_n + h f(t_n, y_n) \)                                                                     | Numerische Integration von Differentialgleichungen         |

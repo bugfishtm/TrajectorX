@@ -1,0 +1,127 @@
+<table>
+  <thead>
+    <tr>
+      <th>Konzept/Gesetz</th>
+      <th>Formel</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Newtons Gravitationsgesetz</td>
+      <td>F = G * (m1 * m2) / (r * r)</td>
+      <td>Anziehungskraft zwischen zwei Massen</td>
+    </tr>
+    <tr>
+      <td>Newtons Bewegungsgleichung</td>
+      <td>F = m * a</td>
+      <td>Grundgleichung der Mechanik</td>
+    </tr>
+    <tr>
+      <td>Keplersches 3. Gesetz</td>
+      <td>a^3 / T^2 = konstant</td>
+      <td>Verhältnis Bahnhalbachse/Umlaufzeit</td>
+    </tr>
+    <tr>
+      <td>Vis-Viva-Gleichung</td>
+      <td>v^2 = GM * (2/r - 1/a)</td>
+      <td>Geschwindigkeit auf Keplerbahn</td>
+    </tr>
+    <tr>
+      <td>Hill-Sphäre</td>
+      <td>r_H = a * pow(m / (3 * M), 1.0/3.0)</td>
+      <td>Bereich der gravitativen Bindung eines Körpers</td>
+    </tr>
+    <tr>
+      <td>Schwarzschild-Radius</td>
+      <td>r_s = 2 * G * M / (c * c)</td>
+      <td>Radius eines Schwarzen Lochs</td>
+    </tr>
+    <tr>
+      <td>Raketenformel (Ziolkowski)</td>
+      <td>delta_v = v_e * log(m0 / mf)</td>
+      <td>Geschwindigkeitsänderung durch Antrieb</td>
+    </tr>
+    <tr>
+      <td>Mehrkörperproblem</td>
+      <td>m_i * d2r_i/dt2 = Summe(j != i) [ G * m_i * m_j / |r_j - r_i|^3 * (r_j - r_i) ]</td>
+      <td>Bewegung unter mehreren Gravitationsquellen</td>
+    </tr>
+    <tr>
+      <td>Relativistische Korrektur</td>
+      <td>delta_omega = 6 * pi * G * M / (a * (1 - e*e) * c*c)</td>
+      <td>Periheldrehung (z.B. Merkurbahn)</td>
+    </tr>
+    <tr>
+      <td>Euler-Verfahren (numerisch)</td>
+      <td>y_{n+1} = y_n + h * f(t_n, y_n)</td>
+      <td>Numerische Integration von Differentialgleichungen</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<pre>
+// Newtons Gravitationsgesetz
+double gravitationalForce(double m1, double m2, double r) {
+    const double G = 6.67430e-11; // Gravitationskonstante
+    return G * m1 * m2 / (r * r);
+}
+
+// Newtonsche Bewegungsgleichung
+double force(double m, double a) {
+    return m * a;
+}
+
+// Keplersches 3. Gesetz (Umstellen nach T)
+double orbitalPeriod(double a, double mu) {
+    // mu = G * (M + m) ~ G * M, wenn m << M
+    return 2 * M_PI * sqrt(pow(a, 3) / mu);
+}
+
+// Vis-Viva-Gleichung
+double visViva(double GM, double r, double a) {
+    return sqrt(GM * (2.0 / r - 1.0 / a));
+}
+
+// Hill-Sphäre
+double hillSphere(double a, double m, double M) {
+    return a * pow(m / (3.0 * M), 1.0 / 3.0);
+}
+
+// Schwarzschild-Radius
+double schwarzschildRadius(double M) {
+    const double G = 6.67430e-11;
+    const double c = 299792458.0;
+    return 2.0 * G * M / (c * c);
+}
+
+// Raketenformel (Ziolkowski)
+double rocketDeltaV(double ve, double m0, double mf) {
+    return ve * log(m0 / mf);
+}
+
+// Mehrkörperproblem (vereinfachtes Beispiel für Kraft auf Körper i)
+Vector3 nBodyForce(int i, const std::vector<Vector3>& positions, const std::vector<double>& masses) {
+    const double G = 6.67430e-11;
+    Vector3 force(0, 0, 0);
+    for (size_t j = 0; j < positions.size(); ++j) {
+        if (j == i) continue;
+        Vector3 diff = positions[j] - positions[i];
+        double dist3 = pow(diff.length(), 3);
+        force += G * masses[i] * masses[j] / dist3 * diff;
+    }
+    return force;
+}
+
+// Relativistische Korrektur der Periheldrehung
+double perihelionPrecession(double G, double M, double a, double e, double c) {
+    return 6.0 * M_PI * G * M / (a * (1.0 - e * e) * c * c);
+}
+
+// Euler-Verfahren (numerisch)
+double eulerStep(double yn, double h, double (*f)(double, double), double tn) {
+    return yn + h * f(tn, yn);
+}
+
+</pre>
